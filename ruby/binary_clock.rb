@@ -8,10 +8,6 @@ def to_binary(number:, bits:)
   number.to_s(2).rjust(bits, '0').chars.map(&:to_i)
 end
 
-def p(binary:, zero: '0', one: '1')
-  binary.to_i == 0 ? zero : one
-end
-
 def to_8_bit_binary_zero_padded(number:)
   number.to_s.rjust(2, '0').chars.map { |c| to_binary(number: c.to_i, bits: 4) }
 end
