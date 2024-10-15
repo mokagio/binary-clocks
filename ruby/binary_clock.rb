@@ -5,11 +5,18 @@ def clear_screen
 end
 
 def to_binary(number:, bits:)
-  number.to_s(2).rjust(bits, '0').chars.map(&:to_i)
+  number
+    .to_s(2) # convert to binary (base 2)
+    .rjust(bits, '0') # make sure the string has as many bits are requested
+    .chars.map(&:to_i) # return an array of int digits (could also be bool)
 end
 
 def to_4_bit_binary_zero_padded(number:)
-  number.to_s.rjust(2, '0').chars.map { |c| to_binary(number: c.to_i, bits: 4) }
+  number
+    .to_s # convert to string for the next operation
+    .rjust(2, '0') # zero-pad so we always have two digits
+    .chars
+    .map { |c| to_binary(number: c.to_i, bits: 4) } # convert the two digits (chars) to 4-bit binary
 end
 
 def binary_time_representation(time:, zero:, one:, spacer_string:, empty_string:)
