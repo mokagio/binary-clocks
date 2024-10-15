@@ -35,10 +35,9 @@ def binary_time_representation(time:, zero:, one:, spacer_string:, empty_string:
 	end.join("\n")
 end
 
-def print_binary_clock(zero:, one:, spacer_string:, empty_string:)
+def print_binary_clock(zero:, one:, spacer_string:, empty_string:, show_header: true)
   header = <<~HEADER
     Binary Clock (Press 'q' then 'Enter' to quit)
-    ============
 
   HEADER
 
@@ -47,6 +46,9 @@ def print_binary_clock(zero:, one:, spacer_string:, empty_string:)
       clear_screen
 
       # TODO: Make it press only q; or make it press any key
+
+      puts header if show_header
+
       puts <<~OUT
         #{binary_time_representation(time: Time.now, zero:, one:, spacer_string:, empty_string:)}
       OUT
@@ -75,7 +77,7 @@ when :ascii
 	print_binary_clock(zero: 'X', one: '0', spacer_string: ' ', empty_string: ' ')
 when :emoji
 	# Rendering emojis results in different spaces, so we need an emoji for the empty case to keep alignment
-	print_binary_clock(zero: '⚫️', one: '🟢', spacer_string: ' ', empty_string: '⚫️')
+	print_binary_clock(zero: '⚫️', one: '🟢', spacer_string: ' ', empty_string: '⚫️', show_header: false)
 else
 	raise "Invalid mode #{mode}"
 end
