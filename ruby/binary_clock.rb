@@ -8,15 +8,15 @@ def to_binary(number:, bits:)
   number.to_s(2).rjust(bits, '0').chars.map(&:to_i)
 end
 
-def to_8_bit_binary_zero_padded(number:)
+def to_4_bit_binary_zero_padded(number:)
   number.to_s.rjust(2, '0').chars.map { |c| to_binary(number: c.to_i, bits: 4) }
 end
 
 def binary_time_representation(time:, zero:, one:, spacer_string:, empty_string:)
   # 18 will become [[0,0,0,1],[1,0,0,0]]
-  hours = to_8_bit_binary_zero_padded(number: time.hour)
-  minutes = to_8_bit_binary_zero_padded(number: time.min)
-  seconds = to_8_bit_binary_zero_padded(number: time.sec)
+  hours = to_4_bit_binary_zero_padded(number: time.hour)
+  minutes = to_4_bit_binary_zero_padded(number: time.min)
+  seconds = to_4_bit_binary_zero_padded(number: time.sec)
 
   # Because of the ordering of the digits array (see example above), we start from position 0 and finish at position 3
   lines = [
