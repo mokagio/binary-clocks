@@ -11,7 +11,7 @@ def to_binary(number:, bits:)
     .chars.map(&:to_i) # return an array of int digits (could also be bool)
 end
 
-def to_4_bit_binary_zero_padded(number:)
+def to_4_bit_binary(number:)
   number
     .to_s # convert to string for the next operation
     .rjust(2, '0') # zero-pad so we always have two digits
@@ -21,9 +21,9 @@ end
 
 def binary_time_representation(time:, zero:, one:, spacer_string:, empty_string:)
   # 18 will become [[0,0,0,1],[1,0,0,0]]
-  hours = to_4_bit_binary_zero_padded(number: time.hour)
-  minutes = to_4_bit_binary_zero_padded(number: time.min)
-  seconds = to_4_bit_binary_zero_padded(number: time.sec)
+  hours = to_4_bit_binary(number: time.hour)
+  minutes = to_4_bit_binary(number: time.min)
+  seconds = to_4_bit_binary(number: time.sec)
 
   # Because of the ordering of the digits array (see example above), we start from position 0 and finish at position 3
   lines = [
